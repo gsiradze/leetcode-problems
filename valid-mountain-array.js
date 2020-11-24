@@ -1,5 +1,30 @@
 //https://leetcode.com/problems/valid-mountain-array/
 var validMountainArray = function(arr) {
+    const peak = Math.max(...arr);
+    const peakIndex = arr.indexOf(peak);
+
+    if (arr.length < 3 || peakIndex === 0 || arr[arr.length - 1] === peak) {
+        return false;
+    }
+
+    for (let i=0; i<peakIndex; i++) {
+        if (arr[i] >= arr[i+1]) {
+            return false;
+        }
+    }
+
+    for (let i=peakIndex; i<arr.length; i++) {
+        if(arr[i+1] >= arr[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//
+
+var validMountainArrayDummy = function(arr) {
     if (arr.length < 3) {
         return false;
     }
